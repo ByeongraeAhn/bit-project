@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.bitacademy.java67.dao.BoardDao"> <!-- 이름은 뭘 넣어도 상관없지만 가능하면 이름을 같게한다. -->
+	
+	<resultMap type="BoardVo" id="BoardVoMap"> <!-- 컬럼마다 프로퍼티와 이름을 같게하기 위해 알리아스를 주는게 귀찮다!. resultMap사용-->
+	  <id 	  column="bno" property="no"/>
+	  <result column="title" property="title"/>
+	  <result column="content" property="content"/>
+	  <result column="cre_date" property="createDate"/>
+	  <result column="views" property="views"/>
+	</resultMap>
+	
+	<insert id="insert" parameterType="BoardVo"> <!-- id도 가능하면 메서드랑 이름을 같게하라 --> 
+												 <!-- net.bitacademy.java67.domain.BoardVo를 기니까 알리아스  BoardVo 로 불러드림  -->
+		INSERT INTO board2 (title,content,cre_date) 
+		VALUES (#{title},#{content},now())       <!-- #는 값을 넣지만 $는 sql문을 넣는다. 편하긴 하지만 보안문제로 사용 하지 말라 -->
+	</insert>
+	
+	<select id="selectList" parameterType="map" resultType="BoardVo">
+		SELECT 
+			 bno as no<!-- 세터에 저장하기 위에서 프로퍼티와 이름을 같게한다 -->
+			,title
+			,cre_date as createDate
+			,views
+		FROM     board2
+		<if test="word != null and word != ''">
+		WHERE    title   like CONCAT('%', #{word}, '%') <!-- MYSQL에서 문자열을 결합할때 이렇게 한다. 오라클은 다르다. -->
+		OR    	 content like CONCAT('%', #{word}, '%')
+  		</if>
+  		<choose> <!-- 선택한 조건에 따라 정렬한다. -->
+  		  <when test="order == 'title'">ORDER BY title ASC</when>
+  		  <when test="order == 'createDate'">ORDER BY cre_date ASC</when>
+  		  <when test="order == 'views'">ORDER BY views DESC</when>
+	 	  <otherwise> ORDER BY bno DESC</otherwise>
+  		</choose>
+		LIMIT #{startIndex}, #{pageSize} <!--map객체 있는 키 값이다. 이 키를 통해서 값을 불러온다. -->
+	</select>
+	
+	<!-- 페이지를 카운트하여 마지막 페이지에서는 [다음]버튼에 링크를 걸지 않는다 -->
+	<select id="countAll" parameterType="string" resultType="int">
+		SELECT count(bno)
+		FROM     board2
+		<if test="value != null and value != ''">
+		WHERE    title   like CONCAT('%', #{value}, '%')
+		OR    	 content like CONCAT('%', #{value}, '%')
+  		</if>		
+	</select>
+	
+	<select id="selectOne" parameterType="int" resultMap="BoardVoMap"> <!-- 이런식으로 위에서 지정한 resultMap을 쓰면 
+																			컬럼에 알리아스를 따로 안줘도 된다.-->
+		SELECT 
+			  bno
+			  ,title
+			  ,content
+			  ,cre_date
+			  ,views 
+		FROM  board2 
+		WHERE bno=#{no} <!-- 파라미터 타입이 래퍼 타입이면 아무거나 접어도 된다 -->
+	</select>
+	
+	<delete id="delete" parameterType="int"> <!-- 리턴값이 없다. 그러므로 resultType 필요없다 -->
+		DELETE 
+		FROM  board2 
+		WHERE bno=#{value}
+	</delete>
+	
+	<update id="update" parameterType="BoardVo">
+		UPDATE board2 
+		SET title  = #{title}
+		   ,content= #{content}
+       WHERE bno   = #{no}
+	</update>
+
+
+</mapper>
