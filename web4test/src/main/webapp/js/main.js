@@ -23959,7 +23959,7 @@ function updateSize3D() {
 function init3D() {
   scene.fog = new THREE.FogExp2(0, .0013);
   var t = new THREE.MeshPhongMaterial({
-    color: new THREE.Color("rgb(3,7,15)"),
+    color: new THREE.Color("rgb(67,116,217)"),
     emissive: new THREE.Color("rgb(3,7,15)"),
     specular: new THREE.Color("rgb(140,140,140)"),
     shininess: 10,
