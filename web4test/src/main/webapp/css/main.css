@@ -1,11 +1,11 @@
-blockquote,body,button,code,dd,div,dl,dt,fieldset,form,h1,h2,h3,h4,h5,h6,input,legend,li,ol,p,pre,select,td,textarea,th,ul
-{
-	font-family:RobotoDraft,'Hiragino Kaku Gothic ProN','ヒラギノ角ゴ ProN W3',Meiryo,メイリオ,sans-serif;	
-}
 html
 {
 	height: 100%;
 	width: 100%;
+}
+
+* {
+	font-family:RobotoDraft,'Hiragino Kaku Gothic ProN','ヒラギノ角ゴ ProN W3',Meiryo,メイリオ,sans-serif;
 }
 body
 {
@@ -38,7 +38,6 @@ body
 	top: -280px;
 	font-size: 35px;
 	font-weight:400;
-	float:	center;
 	color: white;
 	z-index: 2;
 	letter-spacing:8px;
@@ -65,12 +64,13 @@ body
 
 #circle1{
 position: relative;
-top: -482px;
+top: -476px;
 margin:0 auto;
-border:2px white solid;
-width: 350px;
-height: 350px;
--webkit-border-radius:350px;
--moz-border-radius:350px;
+border:5px white dotted;
+width: 300px;
+height: 300px;
+-webkit-border-radius:300px;
+-moz-border-radius:300px;
+z-index: -1;
 }
 
