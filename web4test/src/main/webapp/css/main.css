@@ -60,17 +60,18 @@ body
 	border-radius: 20px;
 	background-color:transparent;
 	color: white;
+	resize: none;
 }
 
 #circle1{
 position: relative;
-top: -476px;
+top: -470px;
 margin:0 auto;
 border:5px white dotted;
-width: 300px;
-height: 300px;
--webkit-border-radius:300px;
--moz-border-radius:300px;
+width: 310px;
+height: 310px;
+-webkit-border-radius:310px;
+-moz-border-radius:310px;
 z-index: -1;
 }
 
