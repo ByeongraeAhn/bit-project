@@ -22,20 +22,16 @@ body
 	width: 25%;
 	height: 100%;
 }
+
 #center
 {
 	float: left;
 	text-align: center;
 	width: 50%;
 	height: 100%;
-	margin-top: 200px;
+	margin-top: 5%;
 }
-.canvas
-{
-	float: center;
-	margin:0 auto;
-	z-index: 1;
-}
+
 .title
 {
 	position: relative;
@@ -61,19 +57,20 @@ body
 }
 
 #welcome {
-	background-color: #B2CCFF;
-	font-size: 15px;
+	font-size: 17px;
+	border-radius: 20px;
+	background-color:transparent;
+	color: white;
 }
 
 #circle1{
 position: relative;
-top: -500px;
-float:	center;
+top: -482px;
 margin:0 auto;
 border:2px white solid;
-width: 400px;
-height: 400px;
--webkit-border-radius:400px;
--moz-border-radius:400px;
-z-index: -2;
+width: 350px;
+height: 350px;
+-webkit-border-radius:350px;
+-moz-border-radius:350px;
 }
+
