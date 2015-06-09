@@ -1,1 +1,0 @@
-ex3 이후로 View Resolve 때문에 작동안될것이다.
