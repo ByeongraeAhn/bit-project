@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>바이오 리듬</title>
+<style>
+body {
+	background-color: black;
+	background-image: url("../images/bgImg.png");
+	background-repeat: no-repeat;
+}
+
+}
+div#bgi {
+	
+}
+
+#graph {
+	margin-top: 80px; width : 450px;
+	height: 300px;
+	margin: 20px auto;
+	float: left;
+	width: 450px;
+}
+
+table {
+	margin-left: 65px;
+	margin-top: 10px;
+	margin-bottom: 50px;
+	color: #58FAF4;
+}
+
+#javisMsg {
+	float: right;
+	margin-top: 30px;
+	margin-right: 120px;
+	width: 300px;
+	height: 400px;
+	color: #58FAF4;
+}
+
+p {
+	margin-top: 30px;
+	margin-left: 70px;
+	color: #58FAF4;
+}
+</style>
+</head>
+<body>
+	<div id="bgi">
+		<p class="graph-title">배광한 님의 바이오리듬</p>
+		<table border='1'>
+			<tr>
+				<th>신체 지수</th>
+				<th>감성 지수</th>
+				<th>지각 지수</th>
+				<th>지성 지수</th>
+			</tr>
+			<tr>
+				<td id="physical"></td>
+				<td id="emotional"></td>
+				<td id="mental"></td>
+				<td id="intuitive"></td>
+			</tr>
+		</table>
+
+		<div id="graph"></div>
+		<div id="javisMsg">
+			금일 광한님의 바이오 리듬 분석 입니다.<br> 신체 지수와 지각지수가 매우 높고, 감성지수와 지성 지수가
+			낮습니다.<br> 이런 날은 억지로 공부하기 보다는 기분전환을 위한 간단한 운동이 좋습니다.<br>
+			PC방에서 하는 손가락 운동 대신 친구들과 함께 뛰어노는 운동을 한번 해보시는게 어떨까요?<br>
+		</div>
+	</div>
+	<script type="text/javascript" src="bioPage.js"></script>
+	<script type="text/javascript" src="flotr2.min.js"></script>
+	<script type="text/javascript">
+		(function basic_radar(container) {
+
+			// Fill series s1 and s2.
+			if (physical < 0) {
+				physical = 100 + physical;
+			} else {
+				physical += 100
+			}
+			if (emotional < 0) {
+				emotional = 100 + emotional;
+			} else {
+				emotional += 100
+			}
+			if (mental < 0) {
+				mental = 100 + mental;
+			} else {
+				mental += 100
+			}
+			if (intuitive < 0) {
+				intuitive = 100 + intuitive;
+			} else {
+				intuitive += 100
+			}
+			var s1 = {
+				label : '배광한님',
+				data : [ [ 0, physical ], [ 1, emotional ], [ 2, mental ],
+						[ 3, intuitive ] ]
+			}, graph, ticks;
+
+			// Radar Labels
+			ticks = [ [ 0, "신체 지수" ], [ 1, "감성 지수" ], [ 2, "지각 지수" ],
+					[ 3, "지성 지수" ], ];
+
+			// Draw the graph.
+			graph = Flotr.draw(container, [ s1 ], {
+				radar : {
+					show : true
+				},
+				grid : {
+					circular : true,
+					minorHorizontalLines : true
+				},
+				yaxis : {
+					min : 0,
+					max : 200,
+					minorTickFreq : 1
+				},
+				xaxis : {
+					ticks : ticks
+				}
+			});
+		})(document.getElementById("graph"));
+	</script>
+</body>
+</html>

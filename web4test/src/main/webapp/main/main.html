@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html class="high mono">
+<head>
+<meta charset="utf-8">
+<title> 미니 자비스1</title>
+<link href='../css/main.css' rel='stylesheet' type='text/css'>
+<script charset="utf-8" src="../js/main.js"></script>
+<script type="text/javascript">
+var msg = '엄진영님 어서오세요.
+오늘 102번째 방문이십니다.
+진영님을 위한 정보를 준비해 봤습니다.
+원하시는 정보가 있으시면 분석해드리겠습니다.';
+var Smsg = new SpeechSynthesisUtterance(msg);
+window.speechSynthesis.speak(msg);
+
+
+
+</script>
+</head>
+
+<body>
+	<div id="left">
+		<div id="left_top" class="box">
+		<span>
+		<img src="bioJarvis.PNG" width="100%" height="100%" onclick="location.href='../bio/bioPage.html'"></span>
+		</div>
+		<div id="left_bottom" class="box">
+		<img src="calJarvis.png" width="100%" height="100%" onclick="location.href='../cal/demos/default.html'">
+		</div>
+	</div>
+
+	<div id="center">
+		<textarea id="welcome" rows="8" cols="50">
+엄진영님 어서오세요.
+오늘 102번째 방문이십니다.
+진영님을 위한 정보를 준비해 봤습니다.
+원하시는 정보가 있으시면 분석해드리겠습니다.</textarea>
+		<div class="canvas"><canvas class="background"></canvas></div>
+		<div class="title">JARVIS</div>
+		<div id="circle1"></div>
+
+		
+	</div>
+
+	<div id="right">
+		<div id="right_top" class="box">
+		<span>
+		<img src="weatherJarvis.PNG" width="100%" height="100%" onclick="location.href='../weather/weather.html'"></span>
+		</div>
+		<div id="right_bottom" class="box">
+		<iframe src="../news/news.html" width="100%" height="100%">
+		</div>
+	</div>
+
+
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Weather</title>
+<link
+	href='//fonts.googleapis.com/css?family=RobotoDraft:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en'
+	rel='stylesheet' type='text/css'
+>
+<style>
+body {
+	color: white;
+	background-color:  #000009;
+}
+.weather {
+	border-style: solid;
+	border-size: 1px;
+	width: 400px;
+	height: 300px;
+	color: white;
+	background-color: #000009;
+}
+
+#date {
+	height: 10%;
+	width: 100%;
+	text-align: right;
+	font-size: 0.8em;
+}
+
+#loc {
+	height: 10%;
+	width: 100%;
+	text-align: center;
+	font-size: 1.5em;
+}
+
+#wrap_wt {
+	float: left;
+	width: 100%;
+	height: 50%;
+}
+
+#wt_img {
+
+	margin: 12px 0px 0px 36px ;
+	float: left;
+}
+
+#wt_info {
+	height: 10%;
+	width: 100%;
+	clear: both;
+	text-align: center;
+}
+
+#wind {
+	height: 10%;
+	width: 100%;
+	text-align: center;
+}
+
+#humi {
+	height: 10%;
+	width: 100%;
+	text-align: center;
+}
+
+#temp {
+	font-size: 4em;
+	text-align: center;
+	margin-top: 32px;
+	margin-bottom: 32px;
+}
+</style>
+</head>
+<body>
+	<div class='weather'>
+		<div id='date'>Tuesday, 2015-06-07</div>
+		<div id='loc'>Seoul, Korea</div>
+		<div id='wrap_wt'>
+			<div id='wt_img'>
+				<img src='./icons/weather-big-snow.png' />
+			</div>
+			<div id='temp'>24℃</div>
+		</div>
+		<div id='wt_info'>Most Sunny</div>
+		<div id='wind'>Wind: S 14km/h</div>
+		<div id='humi'>Humi : 79%</div>
+	</div>
+</body>
+</html>
