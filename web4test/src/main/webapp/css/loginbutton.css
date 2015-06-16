@@ -42,16 +42,15 @@
 
 /* twitter button class*/
 .twitterBtn{
-    background: #00ABE3;
+    background: #00ff00;
 }
 
 .twitterBtn:before{
       font-family: "FontAwesome";
-      content: "\f099"; /* add twitter icon */
 }
 
 .twitterBtn:hover{
-      color: #00ABE3;
+      color: #00ff00;
       background: #fff;
 }
 
