@@ -55,7 +55,6 @@ function render() {
     if (obj['email']) {
       email = 'Email: ' + obj['email'];
     }
-    //anbr(obj);
     anbr2(obj);
 
     console.log(obj);   // 전체 개체를 검사하려면 주석을 해제합니다.
