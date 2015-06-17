@@ -15258,9 +15258,17 @@ NaverAuthorize = function(htOption) {
          * 로그인
          * @param {string} state_token state 토큰
          */
+        login : function popupOpen(state_token){
+        	var popUrl = URL.LOGIN + "?client_id=" + client_id + "&response_type=code&redirect_uri=" + encodeURIComponent(redirect_uri) + "&state=" + state_token;	//팝업창에 출력될 페이지 URL
+        	var popOption = "width=370, height=360, resizable=no, scrollbars=no, status=no;";    //팝업창 옵션(optoin)
+        		window.open(popUrl,"",popOption);
+        	}
+        /*
         login : function(state_token) {
             document.location.href = URL.LOGIN + "?client_id=" + client_id + "&response_type=code&redirect_uri=" + encodeURIComponent(redirect_uri) + "&state=" + state_token;
         }
+        */
+        
     };
 
 }
