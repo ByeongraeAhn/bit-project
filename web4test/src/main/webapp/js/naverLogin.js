@@ -12,7 +12,7 @@ function saveState(state) {
 var naver = NaverAuthorize({
 	client_id : "m749lyf8DGsMVqtvRIFF",
 	client_secret : "x7XNbitBMo",
-	redirect_uri : "http://192.168.10.25:9999/web4test/main/main.html"
+	redirect_uri : "http://localhost:9999/web4test/main/main.html"
 });
 
 window.onload = function() {
