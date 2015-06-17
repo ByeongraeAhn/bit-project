@@ -72,11 +72,6 @@ function render() {
  			},
  			success: function(result) {
  				console.log("ajax성공");
- 				/*var rows = result.data;
- 				console.log(email);
- 				console.log(result.username);
- 				console.log(rows[0]);
- 				console.log(rows[0].email);*/
  				location.replace("http://localhost:9999/web4test/main/main.html");
  			},
  			error: function(xhr, textStatus, errorThrown) {
