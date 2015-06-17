@@ -9,95 +9,15 @@
 	href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css"
 	rel="stylesheet">
 </head>
-<script>
-  // This is called with the results from from FB.getLoginStatus().
-  function statusChangeCallback(response) {
-    console.log('statusChangeCallback');
-    console.log(response);
-    // The response object is returned with a status field that lets the
-    // app know the current login status of the person.
-    // Full docs on the response object can be found in the documentation
-    // for FB.getLoginStatus().
-    if (response.status === 'connected') {
-      // Logged into your app and Facebook.
-      testAPI();
-    } else if (response.status === 'not_authorized') {
-      // The person is logged into Facebook, but not your app.
-      document.getElementById('status').innerHTML = 'Please log ' +
-        'into this app.';
-    } else {
-      // The person is not logged into Facebook, so we're not sure if
-      // they are logged into this app or not.
-      document.getElementById('status').innerHTML = 'Please log ' +
-        'into Facebook.';
-    }
-  }
-
-  // This function is called when someone finishes with the Login
-  // Button.  See the onlogin handler attached to it in the sample
-  // code below.
-  function checkLoginState() {
-    FB.getLoginStatus(function(response) {
-      statusChangeCallback(response);
-    });
-  }
-
-  window.fbAsyncInit = function() {
-  FB.init({
-    appId      : '466301503545687',
-    cookie     : true,  // enable cookies to allow the server to access 
-                        // the session
-    xfbml      : true,  // parse social plugins on this page
-    version    : 'v2.3' // use version 2.2
-  });
-
-  // Now that we've initialized the JavaScript SDK, we call 
-  // FB.getLoginStatus().  This function gets the state of the
-  // person visiting this page and can return one of three states to
-  // the callback you provide.  They can be:
-  //
-  // 1. Logged into your app ('connected')
-  // 2. Logged into Facebook, but not your app ('not_authorized')
-  // 3. Not logged into Facebook and can't tell if they are logged into
-  //    your app or not.
-  //
-  // These three cases are handled in the callback function.
-
-  FB.getLoginStatus(function(response) {
-    statusChangeCallback(response);
-  });
-
-  };
-
-  // Load the SDK asynchronously
-  (function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/en_US/sdk.js";
-    fjs.parentNode.insertBefore(js, fjs);
-  }(document, 'script', 'facebook-jssdk'));
-
-  // Here we run a very simple test of the Graph API after login is
-  // successful.  See statusChangeCallback() for when this call is made.
-  function testAPI() {
-    console.log('Welcome!  Fetching your information.... ');
-    FB.api('/me', function(response) {
-      console.log('Successful login for: ' + response.name);
-      document.getElementById('status').innerHTML =
-        'Thanks for logging in, ' + response.name + '!';
-    });
-  }
-</script>
 
 <body>
-
 	<div class="container">
 
 		<div class="omb_login">
 			<h3 class="omb_authTitle">Jarvis Login</h3>
 			<div class="row omb_row-sm-offset-3 omb_socialButtons">
-				<div class="fb-login-button" data-max-rows="1" data-size="xlarge" data-show-faces="false" data-auto-logout-link="true"></div>
+				<div class="fb-login-button" data-max-rows="1" data-size="xlarge"
+					data-show-faces="false" data-auto-logout-link="true"></div>
 
 				<div id="status"></div>
 				<div class="col-xs-4 col-sm-2">
@@ -110,6 +30,23 @@
 						class="fa fa-google-plus visible-xs"></i> <span class="hidden-xs">Google+</span>
 					</a>
 				</div>
+				<div>
+					<button>
+						<img src="../images/login_btn.PNG" width="200" height="200"
+							id="NaverIdLoginBTN">
+					</button>
+				</div>
+				<ul>
+					<li><a
+						href="https://nid.naver.com/oauth2.0/authorize?client_id=m749lyf8DGsMVqtvRIFF&response_type=code&redirect_uri=http://127.0.0.1:9999/web4test/main/main.html&state=1434369808893">네이버
+							로그인1</a></li>
+					<li><a
+						href="https://nid.naver.com/oauth2.0/token?grant_type=authorization_code&client_id=m749lyf8DGsMVqtvRIFF&client_secret=x7XNbitBMo&code=26OJbGyMW9gZupD4&state=1434369808893">네이버
+							로그인2</a></li>
+					<li><a
+						href="https://apis.naver.com/nidlogin/nid/getUserProfile.xml?Authorization=AAAAOJqAtjWDcIpcsHkC5zsS7TMVGACUmTxdJOdpzW6L2ult/FRrRodQ/uKy1NTiKn6olHU2XAhBXeCEkionXZyuNg8=">네이버
+							로그인3</a></li>
+				</ul>
 			</div>
 
 			<div class="row omb_row-sm-offset-3 omb_loginOr">
@@ -153,6 +90,96 @@
 			</div>
 		</div>
 	</div>
+
+	<script src="../js/jquery-1.11.2.js"></script>
+	<script src="../js/naverLogin.js"></script>
+	<script src="../js/jquery.cookie.js"></script>
+
+	<script type="text/javascript">
+		function generateState() {
+			var oDate = new Date();
+			return oDate.getTime();
+		}
+
+		function saveState(state) {
+			$.removeCookie("state_token");
+			$.cookie("state_token", state);
+			console.log("show cookies to JSON : " + JSON.stringify($.cookie));
+		}
+
+		var naver = NaverAuthorize({
+			client_id : "m749lyf8DGsMVqtvRIFF",
+			client_secret : "x7XNbitBMo",
+			redirect_uri : "http://127.0.0.1:9999/web4test/login/login.html"
+		});
+
+		window.onload = function() {
+			checkLoginState();
+		}
+
+		var tokenInfo = {
+			access_token : "",
+			refresh_token : ""
+		};
+
+		console.log(tokenInfo);
+
+		function checkLoginState() {
+			var state = $.cookie("state_token");
+
+			console
+					.log("show $.cookie 'state_token' ", $
+							.cookie("state_token"));
+
+			if (naver.checkAuthorizeState(state) === "connected") {
+				console
+						.log("naver.checkAuthorizeState(state) === 'connected' = true");
+
+				naver.getAccessToken(function(data) {
+					console.log("getAccessToken's data info " + data);
+					var response = data._response.responseJSON;
+
+					if (response.error === "fail") {
+						console.log("response.error is fail")
+						return;
+					}
+
+					naver.api("/me", response.access_token, function(a) {
+						console.log(JSON.stringify(a._response.responseJSON))
+					})
+					tokenInfo.access_token = response.access_token;
+					tokenInfo.refresh_token = response.refresh_token;
+
+					naver.updateAccessToken(tokenInfo.refresh_token, function(
+							a, b, c) {
+						console.log("params", a);
+						console.log("params",
+								a._response.responseJSON.access_token);
+
+						naver.api("/me", a._response.responseJSON.access_token,
+								function(a) {
+									console.log("my info Object : ", a)
+									for ( var i in a) {
+										console.log(i + " : " + a[i])
+									}
+								})
+					})
+
+					console.log("success to get access token", response);
+				});
+			} else {
+				console
+						.log("naver.checkAuthorizeState(state) === 'connected' : false")
+				return;
+			}
+		}
+
+		$("#NaverIdLoginBTN").click(function() {
+			var state = generateState();
+			saveState(state);
+			naver.login(state);
+		});
+	</script>
 
 </body>
 </html>
