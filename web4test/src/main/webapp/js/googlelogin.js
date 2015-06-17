@@ -48,16 +48,44 @@ function render() {
  	        });
  	  }
 
- 	  function getEmailCallback(obj){
- 	    var el = document.getElementById('email');
- 	    var email = '';
+  function getEmailCallback(obj){
+    var el = document.getElementById('email');
+    var email = '';
 
- 	    if (obj['email']) {
- 	      email = 'Email: ' + obj['email'];
- 	    }
+    if (obj['email']) {
+      email = 'Email: ' + obj['email'];
+    }
+    //anbr(obj);
+    anbr2(obj);
 
- 	    console.log(obj);   // 전체 개체를 검사하려면 주석을 해제합니다.
+    console.log(obj);   // 전체 개체를 검사하려면 주석을 해제합니다.
 
- 	    el.innerHTML = email;
- 	    toggleElement('email');
- 	  }
+    el.innerHTML = email;
+    toggleElement('email');
+  }
+ 	
+ 	function anbr2(obj) {
+ 		$.ajax('http://localhost:9999/web4test/board/ajax/test.do', {
+ 			method: 'POST',
+ 			data: {
+ 				name: obj['name'],
+ 				email: obj['email']
+ 			},
+ 			success: function(result) {
+ 				console.log("ajax성공");
+ 				/*var rows = result.data;
+ 				console.log(email);
+ 				console.log(result.username);
+ 				console.log(rows[0]);
+ 				console.log(rows[0].email);*/
+ 				location.replace("http://localhost:9999/web4test/main/main.html");
+ 			},
+ 			error: function(xhr, textStatus, errorThrown) {
+ 				alert('작업을 완료할 수 없습니다.\n' + 
+ 					  '잠시 후 다시 시도하세요.\n' +
+ 					  '계속 창이 뜬다면, 관리자에 문의하세요.(사내번호:1112)');
+ 			}
+ 		});
+ 	}
+ 	
+ 	
