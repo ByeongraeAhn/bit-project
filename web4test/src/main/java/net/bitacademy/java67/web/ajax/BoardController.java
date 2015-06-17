@@ -2,8 +2,8 @@ package net.bitacademy.java67.web.ajax;
 
 import java.util.HashMap;
 
-import net.bitacademy.java67.dao.BoardDao;
 import net.bitacademy.java67.dao.SwagUserDao;
+import net.bitacademy.java67.domain.SwagUserVo;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -25,18 +25,19 @@ public class BoardController {
   
   @RequestMapping("/test")
   public ResponseEntity<String> list(String email, String name) throws Exception {
-    System.out.println("들어오나");
-    System.out.println(email);
-    System.out.println(name);
     
     HashMap<String,Object> sqlParams = new HashMap<String,Object>();
     sqlParams.put("email", email);
     sqlParams.put("username", name);
     
-    swagUserDao.selectOne(email);
-    System.out.println("aaaaaaaaaaaaa"+swagUserDao.selectOne(email));
-    swagUserDao.insert(sqlParams);
-
+    SwagUserVo swagUserVo = swagUserDao.selectOne(email);
+    System.out.println(swagUserVo.getCount());
+    
+    if(swagUserVo.getCount() == 1) {
+      System.out.println("이미 등록되어있음");
+    } else {
+      swagUserDao.insert(sqlParams);
+    }
     
     HashMap<String,Object> responseData = new HashMap<String,Object>();
     responseData.put("status", "success");

@@ -16,6 +16,7 @@ public class SwagUserVo implements Serializable {
   protected String      theme;
   protected String      language;
   protected int         countmod;
+  protected int         count;
   
   public String getEmail() {
     return email;
@@ -55,6 +56,12 @@ public class SwagUserVo implements Serializable {
   }
   public static long getSerialversionuid() {
     return serialVersionUID;
+  }
+  public int getCount() {
+    return count;
+  }
+  public void setCount(int count) {
+    this.count = count;
   }
 
   

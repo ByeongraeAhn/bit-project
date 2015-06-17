@@ -14,7 +14,7 @@
   </insert>
   
   <select id="selectOne" parameterType="String" resultType="SwagUserVo">
-      SELECT count(1) 
+      SELECT count(1) as count 
       FROM user 
       WHERE email=#{email}
   </select>

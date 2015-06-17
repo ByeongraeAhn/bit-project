@@ -22,7 +22,7 @@
 	   <context:exclude-filter type="regex" expression="net.bitacademy.java67.web.*"/>
 	</context:component-scan>
 
-	<jee:jndi-lookup id="dataSource" jndi-name="jdbc/java67db"/>
+	<jee:jndi-lookup id="dataSource" jndi-name="jdbc/sm67db"/>
 
 	<bean id="txManager"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
