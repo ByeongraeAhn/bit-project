@@ -64,7 +64,7 @@ function checkLoginState() {
 					/*console.log("my info Object : ", a)*/
 /*					console.log(a._response.responseJSON.response["email"]);
 					console.log(a._response.responseJSON.response["nickname"]);*/
-					anbr2(a);
+					naverajax(a);
 				})
 			})
 
@@ -83,8 +83,8 @@ $("#NaverIdLoginBTN").click(function() {
 	naver.login(state);
 });
 
-function anbr2(a) {
-		$.ajax('http://localhost:9999/web4test/board/ajax/test2.do', {
+function naverajax(a) {
+		$.ajax('http://localhost:9999/web4test/board/ajax/test.do', {
 			method: 'POST',
 			data: {
 				name: a._response.responseJSON.response["nickname"],

@@ -55,7 +55,7 @@ function render() {
     if (obj['email']) {
       email = 'Email: ' + obj['email'];
     }
-    anbr2(obj);
+    googleajax(obj);
 
     console.log(obj);   // 전체 개체를 검사하려면 주석을 해제합니다.
 
@@ -63,7 +63,7 @@ function render() {
     toggleElement('email');
   }
  	
- 	function anbr2(obj) {
+ 	function googleajax(obj) {
  		$.ajax('http://localhost:9999/web4test/board/ajax/test.do', {
  			method: 'POST',
  			data: {
